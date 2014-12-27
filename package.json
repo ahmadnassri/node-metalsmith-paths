@@ -1,9 +1,25 @@
 {
-  "name": "metalsmith-path",
-  "description": "A metalsmith plugin that adds file path values to metadata.",
-  "repository": "git://github.com/ahmadnassri/metalsmith-path.git",
   "version": "0.0.1",
+  "name": "metalsmith-paths",
+  "description": "A metalsmith plugin that adds file path values to metadata.",
+  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com)",
   "license": "MIT",
+  "keywords": [
+    "metalsmith"
+  ],
+  "engines" : {
+    "node" : ">=0.10.3"
+  },
+  "bugs": {
+    "url": "https://github.com/ahmadnassri/metalsmith-paths/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmadnassri/metalsmith-paths.git"
+  },
+  "files": [
+    "index.js"
+  ],
   "main": "index.js",
   "dependencies": {
     "debug": "^2.1.0"

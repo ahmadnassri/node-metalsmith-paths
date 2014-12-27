@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require('debug')('metalsmith-path');
+var debug = require('debug')('metalsmith-paths');
 var path = require('path');
 
 /**

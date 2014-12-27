@@ -1,20 +1,20 @@
 
-# metalsmith-path
+# metalsmith-paths
 
   A Metalsmith plugin that adds file path values (`dirname`, `extname`, `basename`, `path`) to metadata.
 
 ## Installation
 
-    $ npm install metalsmith-path
+    $ npm install metalsmith-paths
 
 ## Usage
 
 ```js
 var Metalsmith = require('metalsmith');
-var path = require('metalsmith-path');
+var paths = require('metalsmith-paths');
 
 var metalsmith = new Metalsmith(__dirname)
-  .use(path());
+  .use(paths());
 ```
 
 #### CLI
@@ -24,7 +24,7 @@ var metalsmith = new Metalsmith(__dirname)
 ```json
 {
   "plugins": {
-    "metalsmith-path": true
+    "metalsmith-paths": true
   }
 }
 ```
