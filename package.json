@@ -1,0 +1,13 @@
+{
+  "name": "metalsmith-path",
+  "description": "A metalsmith plugin that adds file path values to metadata.",
+  "repository": "git://github.com/ahmadnassri/metalsmith-path.git",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "debug": "^2.1.0"
+  },
+  "devDependencies": {
+  }
+}
