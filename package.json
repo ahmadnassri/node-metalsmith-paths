@@ -8,13 +8,17 @@
   "license": "MIT",
   "main": "./src/index.js",
   "keywords": [
-    "metalsmith"
+    "basename",
+    "dirname",
+    "extname",
+    "metalsmith",
+    "paths",
+    "plugin"
   ],
   "engines": {
     "node": ">=0.10"
   },
   "files": [
-    "bin",
     "src"
   ],
   "bugs": {
