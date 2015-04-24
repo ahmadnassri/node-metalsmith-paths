@@ -26,7 +26,7 @@ var metalsmith = new Metalsmith(__dirname)
 
 ## CLI
 
-  You can also use the plugin with the Metalsmith CLI by adding a key to your `metalsmith.json` file:
+You can also use the plugin with the Metalsmith CLI by adding a key to your `metalsmith.json` file:
 
 ```json
 {
@@ -70,7 +70,7 @@ Donations are welcome to help support the continuous development of this project
 [gratipay-image]: https://img.shields.io/gratipay/ahmadnassri.svg?style=flat-square
 
 [paypal-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJ2B2BTK9VLRS&on0=project&os0=metalsmith-paths
-[paypal-image]: http://img.shields.io/badge/payPal-donate-green.svg?style=flat-square
+[paypal-image]: http://img.shields.io/badge/paypal-donate-green.svg?style=flat-square
 
 [flattr-url]: https://flattr.com/submit/auto?user_id=codeinchaos&url=https://github.com/ahmadnassri/metalsmith-paths&title=metalsmith-paths&language=&tags=github&category=software
 [flattr-image]: http://img.shields.io/badge/flattr-donate-green.svg?style=flat-square

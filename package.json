@@ -2,28 +2,37 @@
   "version": "0.0.1",
   "name": "metalsmith-paths",
   "description": "A metalsmith plugin that adds file path values to metadata.",
-  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com)",
+  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
+  "homepage": "https://github.com/ahmadnassri/metalsmith-paths",
+  "repository": "ahmadnassri/metalsmith-paths",
   "license": "MIT",
+  "main": "./src/index.js",
   "keywords": [
     "metalsmith"
   ],
-  "engines" : {
-    "node" : ">=0.10.3"
+  "engines": {
+    "node": ">=0.10"
   },
+  "files": [
+    "bin",
+    "src"
+  ],
   "bugs": {
     "url": "https://github.com/ahmadnassri/metalsmith-paths/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ahmadnassri/metalsmith-paths.git"
-  },
-  "files": [
-    "index.js"
-  ],
-  "main": "index.js",
-  "dependencies": {
-    "debug": "^2.1.0"
+  "scripts": {
+    "test": "standard && mocha --reporter spec",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "codeclimate": "codeclimate < coverage/lcov.info"
   },
   "devDependencies": {
+    "codeclimate-test-reporter": "0.0.4",
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.4",
+    "should": "^6.0.1",
+    "standard": "^3.7.1"
+  },
+  "dependencies": {
+    "debug": "^2.1.3"
   }
 }
