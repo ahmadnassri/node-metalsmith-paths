@@ -13,7 +13,7 @@ module.exports = function plugin (options) {
     setImmediate(done)
 
     Object.keys(files).forEach(function (file) {
-      debug('file: %s', file)
+      debug('process file: %s', file)
 
       // add file path info
       files[file].dirname = path.dirname(file)
