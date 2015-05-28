@@ -15,8 +15,6 @@ describe('Metalsmith Paths', function () {
     }
 
     plugin()(files, null, function () {
-      console.log(files)
-
       files['path/to/file.ext'].should.have.property('dirname').and.equal('path/to')
       files['path/to/file.ext'].should.have.property('extname').and.equal('.ext')
       files['path/to/file.ext'].should.have.property('basename').and.equal('file.ext')
