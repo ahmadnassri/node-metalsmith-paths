@@ -1,6 +1,6 @@
 # Metalsmith Paths [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
 
-A Metalsmith plugin that adds file path values (`dirname`, `extname`, `basename`, `path`, `name`) to metadata.
+A Metalsmith plugin that adds file path values (`base`, `dir`, `ext`, `name`, `href`) to metadata `path` property.
 
 [![Build Status][travis-image]][travis-url]
 [![Downloads][npm-downloads]][npm-url]
