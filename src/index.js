@@ -15,15 +15,24 @@ module.exports = function plugin (options) {
     Object.keys(files).forEach(function (file) {
       debug('process file: %s', file)
 
-      // add file path info
-      var extname = path.extname(file)
-      files[file].dirname = path.dirname(file)
-      files[file].extname = extname
-      files[file].basename = path.basename(file)
-      files[file].name = path.basename(file, extname)
+      if (path.parse) {
+        debug('[node >= 0.11.15] using path.parse')
+
+        files[file].path = path.parse(file)
+      } else {
+        // add file path info
+        var extname = path.extname(file)
+
+        files[file].path = {
+          base: path.basename(file),
+          dir: path.dirname(file),
+          ext: extname,
+          name: path.basename(file, extname)
+        }
+      }
 
       // add path meta for use in links in templates
-      files[file].path = '/' + path.dirname(file) + '/'
+      files[file].path.href = '/' + files[file].path.dir + '/'
     })
   }
 }
