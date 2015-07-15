@@ -31,8 +31,13 @@ module.exports = function plugin (options) {
         }
       }
 
+      // default to root
+      files[file].path.href = '/'
+
       // add path meta for use in links in templates
-      files[file].path.href = '/' + files[file].path.dir + '/'
+      if (files[file].path.dir !== '') {
+        files[file].path.href = '/' + files[file].path.dir + '/'
+      }
     })
   }
 }
