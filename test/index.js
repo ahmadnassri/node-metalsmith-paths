@@ -26,4 +26,26 @@ describe('Metalsmith Paths', function () {
       done()
     })
   })
+
+  it('should use custom property', function (done) {
+    plugin.should.be.a.Function
+
+    var files = {
+      'path/to/file.ext': {}
+    }
+
+    plugin({
+      property: 'foo'
+    })(files, null, function () {
+      files['path/to/file.ext'].should.have.property('foo').and.be.an.Object
+
+      files['path/to/file.ext'].foo.should.have.property('base').and.equal('file.ext')
+      files['path/to/file.ext'].foo.should.have.property('dir').and.equal('path/to')
+      files['path/to/file.ext'].foo.should.have.property('ext').and.equal('.ext')
+      files['path/to/file.ext'].foo.should.have.property('name').and.equal('file')
+      files['path/to/file.ext'].foo.should.have.property('href').and.equal('/path/to/')
+
+      done()
+    })
+  })
 })

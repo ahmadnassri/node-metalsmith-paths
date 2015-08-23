@@ -6,7 +6,7 @@
   "homepage": "https://github.com/ahmadnassri/metalsmith-paths",
   "repository": "ahmadnassri/metalsmith-paths",
   "license": "MIT",
-  "main": "./src/index.js",
+  "main": "lib/index.js",
   "keywords": [
     "basename",
     "dirname",
@@ -19,7 +19,7 @@
     "node": ">=0.10"
   },
   "files": [
-    "src"
+    "lib"
   ],
   "bugs": {
     "url": "https://github.com/ahmadnassri/metalsmith-paths/issues"
