@@ -9,6 +9,9 @@ var path = require('path')
  */
 
 module.exports = function plugin (options) {
+  var opts = options || {}
+  var prop = opts.property || 'path'
+
   return function (files, metalsmith, done) {
     setImmediate(done)
 
@@ -18,12 +21,12 @@ module.exports = function plugin (options) {
       if (path.parse) {
         debug('[node >= 0.11.15] using path.parse')
 
-        files[file].path = path.parse(file)
+        files[file][prop] = path.parse(file)
       } else {
         // add file path info
         var extname = path.extname(file)
 
-        files[file].path = {
+        files[file][prop] = {
           base: path.basename(file),
           dir: path.dirname(file),
           ext: extname,
@@ -35,8 +38,8 @@ module.exports = function plugin (options) {
       files[file].path.href = '/'
 
       // add path meta for use in links in templates
-      if (files[file].path.dir !== '') {
-        files[file].path.href = '/' + files[file].path.dir + '/'
+      if (files[file][prop].dir !== '') {
+        files[file][prop].href = '/' + files[file][prop].dir + '/'
       }
     })
   }

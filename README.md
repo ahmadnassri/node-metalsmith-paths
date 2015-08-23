@@ -17,11 +17,13 @@ npm install --save metalsmith-paths
 ## API
 
 ```js
-var Metalsmith = require('metalsmith');
-var paths = require('metalsmith-paths');
+var Metalsmith = require('metalsmith')
+var paths = require('metalsmith-paths')
 
 var metalsmith = new Metalsmith(__dirname)
-  .use(paths());
+  .use(paths({
+    property: "paths"
+  }))
 ```
 
 ## CLI
@@ -31,10 +33,19 @@ You can also use the plugin with the Metalsmith CLI by adding a key to your `met
 ```json
 {
   "plugins": {
-    "metalsmith-paths": true
+    "metalsmith-paths": {
+      "property": "paths"
+    }
   }
 }
 ```
+
+## Options
+
+| name       | description                        | default |
+| ---------- | ---------------------------------- | ------- |
+| `property` | property to store the path data to | `path`  |
+
 
 ## Support
 
