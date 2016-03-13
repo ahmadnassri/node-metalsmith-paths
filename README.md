@@ -42,10 +42,35 @@ You can also use the plugin with the Metalsmith CLI by adding a key to your `met
 
 ## Options
 
-| name       | description                        | default |
-| ---------- | ---------------------------------- | ------- |
-| `property` | property to store the path data to | `path`  |
+| name             | description                        | default   |
+| ---------------- | ---------------------------------- | --------- |
+| `property`       | property to store the path data to | `path`    |
+| `directoryIndex` | remove the filename if it matches  | disabled  |
 
+### directoryIndex
+
+Removes the filename from the `href` attribute if it matches the value of 
+`directoryIndex`. Default: disabled. For example, the following configuration:
+
+```json
+{
+  "plugins": {
+    "metalsmith-paths": {
+      "property": "path",
+      "directoryIndex": "index.html"
+    }
+  }
+}
+```
+
+Would produce the following filenames:
+
+| Filename                      | path.href                     |
+| ----------------------------- | ----------------------------- |
+| /index.html                   | /                             |
+| /portfolio/index.html         | /portfolio/                   |
+| /portfolio/project1.html      | /portfolio/project1.html      |
+| /portfolio/project2.html      | /portfolio/project2.html      |
 
 ## Support
 
