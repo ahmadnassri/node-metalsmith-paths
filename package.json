@@ -42,7 +42,7 @@
     "istanbul": "^0.4.2",
     "mocha": "^3.0.1",
     "should": "^11.0.0",
-    "standard": "^7.1.2"
+    "standard": "^8.0.0"
   },
   "dependencies": {
     "debug-log": "^1.0.0"
