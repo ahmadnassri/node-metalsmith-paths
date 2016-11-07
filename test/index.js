@@ -3,25 +3,29 @@
 'use strict'
 
 var plugin = require('..')
+var path = require('path')
 
 require('should')
 
 describe('Metalsmith Paths', function () {
+  // Use a real file.  Making it up masks compatibility issues, e.g. on Windows it will have
+  // back-slashes instead of forward-slashes but the output for href should always be forward-slashes
+  var absoluteFilePath = path.resolve('./path/to/file.ext')
+  var currentDir = path.resolve('.')
+  var relativeFilePath = path.relative(currentDir, absoluteFilePath)
+  var files = {}
+  files[relativeFilePath] = {}
+
   it('should be a plugin', function (done) {
     plugin.should.be.a.Function
 
-    var files = {
-      'path/to/file.ext': {}
-    }
-
     plugin()(files, null, function () {
-      files['path/to/file.ext'].should.have.property('path').and.be.an.Object
-
-      files['path/to/file.ext'].path.should.have.property('base').and.equal('file.ext')
-      files['path/to/file.ext'].path.should.have.property('dir').and.equal('path/to')
-      files['path/to/file.ext'].path.should.have.property('ext').and.equal('.ext')
-      files['path/to/file.ext'].path.should.have.property('name').and.equal('file')
-      files['path/to/file.ext'].path.should.have.property('href').and.equal('/path/to/file.ext')
+      files[relativeFilePath].should.have.property('path').and.be.an.Object
+      files[relativeFilePath].path.should.have.property('base').and.equal('file.ext')
+      files[relativeFilePath].path.should.have.property('dir').and.equal('path/to')
+      files[relativeFilePath].path.should.have.property('ext').and.equal('.ext')
+      files[relativeFilePath].path.should.have.property('name').and.equal('file')
+      files[relativeFilePath].path.should.have.property('href').and.equal('/path/to/file.ext')
 
       done()
     })
@@ -30,20 +34,16 @@ describe('Metalsmith Paths', function () {
   it('should use custom property', function (done) {
     plugin.should.be.a.Function
 
-    var files = {
-      'path/to/file.ext': {}
-    }
-
     plugin({
       property: 'foo'
     })(files, null, function () {
-      files['path/to/file.ext'].should.have.property('foo').and.be.an.Object
+      files[relativeFilePath].should.have.property('foo').and.be.an.Object
 
-      files['path/to/file.ext'].foo.should.have.property('base').and.equal('file.ext')
-      files['path/to/file.ext'].foo.should.have.property('dir').and.equal('path/to')
-      files['path/to/file.ext'].foo.should.have.property('ext').and.equal('.ext')
-      files['path/to/file.ext'].foo.should.have.property('name').and.equal('file')
-      files['path/to/file.ext'].foo.should.have.property('href').and.equal('/path/to/file.ext')
+      files[relativeFilePath].foo.should.have.property('base').and.equal('file.ext')
+      files[relativeFilePath].foo.should.have.property('dir').and.equal('path/to')
+      files[relativeFilePath].foo.should.have.property('ext').and.equal('.ext')
+      files[relativeFilePath].foo.should.have.property('name').and.equal('file')
+      files[relativeFilePath].foo.should.have.property('href').and.equal('/path/to/file.ext')
 
       done()
     })
