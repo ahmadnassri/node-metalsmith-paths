@@ -51,7 +51,7 @@ given the following directory structure:
 ```
 src/
 └── blog
-    └── post.html
+    └── post.html
 ```
 
 The following metadata will be generated:
