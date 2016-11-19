@@ -50,7 +50,7 @@ given the following directory structure:
 
 ```
 src/
-├── blog
+└── blog
     └── post.html
 ```
 
