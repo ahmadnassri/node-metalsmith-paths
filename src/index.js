@@ -31,7 +31,7 @@ module.exports = function plugin (options) {
 
         files[file][options.property] = {
           base: path.basename(file),
-          dir: path.dirname(file),
+          dir: path.dirname(file).split(path.sep).join('/'),
           ext: extname,
           name: path.basename(file, extname)
         }
