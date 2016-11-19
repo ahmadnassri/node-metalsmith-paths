@@ -6,25 +6,64 @@ A Metalsmith plugin that adds file path values (`base`, `dir`, `ext`, `name`, `h
 [![Downloads][npm-downloads]][npm-url]
 [![Code Climate][codeclimate-quality]][codeclimate-url]
 [![Coverage Status][codeclimate-coverage]][codeclimate-url]
+[![Dependency Status][dependencyci-image]][dependencyci-url]
 [![Dependencies][david-image]][david-url]
 
 ## Install
 
-```sh
-npm install --save metalsmith-paths
+```bash
+npm install --production --save metalsmith-paths
+```
+
+## Usage
+
+I recommend using an optimized build matching your Node.js environment version, otherwise, the standard `require` would work just fine with any version of Node `>= v4.0` .
+
+```js
+/*
+ * Node 7
+ */
+const paths = require('metalsmith-paths/lib/node7')
+
+/*
+ * Node 6
+ */
+const paths = require('metalsmith-paths/lib/node6')
+
+/*
+ * Node 4 (Default)
+ * Note: additional ES2015 polyfills may be required
+ */
+var paths = require('metalsmith-paths')
 ```
 
 ## API
 
 ```js
-var Metalsmith = require('metalsmith')
-var paths = require('metalsmith-paths')
-
-var metalsmith = new Metalsmith(__dirname)
+const metalsmith = new Metalsmith(__dirname)
   .use(paths({
     property: "paths"
   }))
 ```
+
+given the following directory structure:
+
+```
+src/
+├── blog
+    └── post.html
+```
+
+The following metadata will be generated:
+
+| metadata      | value             |
+| ------------- | ----------------- |
+| `path.base`   | `post.html`       |
+| `path.dir`    | `blog`            |
+| `path.ext`    | `.html`           |
+| `path.name`   | `post`            |
+| `path.href`   | `/blog/post.html` |
+| `path.dhref`  | `/blog/`          |
 
 ## CLI
 
@@ -72,20 +111,14 @@ Would produce the following filenames:
 | /portfolio/project1.html      | /portfolio/project1.html      |
 | /portfolio/project2.html      | /portfolio/project2.html      |
 
-## Support
 
-Donations are welcome to help support the continuous development of this project.
+----
+> :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
+> License: [ISC][license-url] &nbsp;&middot;&nbsp;
+> Github: [@ahmadnassri](https://github.com/ahmadnassri) &nbsp;&middot;&nbsp;
+> Twitter: [@ahmadnassri](https://twitter.com/ahmadnassri)
 
-[![Gratipay][gratipay-image]][gratipay-url]
-[![PayPal][paypal-image]][paypal-url]
-[![Flattr][flattr-image]][flattr-url]
-[![Bitcoin][bitcoin-image]][bitcoin-url]
-
-## License
-
-[MIT](LICENSE) &copy; [Ahmad Nassri](https://www.ahmadnassri.com)
-
-[license-url]: https://github.com/ahmadnassri/metalsmith-paths/blob/master/LICENSE
+[license-url]: http://choosealicense.com/licenses/isc/
 
 [travis-url]: https://travis-ci.org/ahmadnassri/metalsmith-paths
 [travis-image]: https://img.shields.io/travis/ahmadnassri/metalsmith-paths.svg?style=flat-square
@@ -102,14 +135,5 @@ Donations are welcome to help support the continuous development of this project
 [david-url]: https://david-dm.org/ahmadnassri/metalsmith-paths
 [david-image]: https://img.shields.io/david/ahmadnassri/metalsmith-paths.svg?style=flat-square
 
-[gratipay-url]: https://www.gratipay.com/ahmadnassri/
-[gratipay-image]: https://img.shields.io/gratipay/ahmadnassri.svg?style=flat-square
-
-[paypal-url]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UJ2B2BTK9VLRS&on0=project&os0=metalsmith-paths
-[paypal-image]: http://img.shields.io/badge/paypal-donate-green.svg?style=flat-square
-
-[flattr-url]: https://flattr.com/submit/auto?user_id=ahmadnassri&url=https://github.com/ahmadnassri/metalsmith-paths&title=metalsmith-paths&language=&tags=github&category=software
-[flattr-image]: http://img.shields.io/badge/flattr-donate-green.svg?style=flat-square
-
-[bitcoin-image]: http://img.shields.io/badge/bitcoin-1Nb46sZRVG3or7pNaDjthcGJpWhvoPpCxy-green.svg?style=flat-square
-[bitcoin-url]: https://www.coinbase.com/checkouts/ae383ae6bb931a2fa5ad11cec115191e?name=metalsmith-paths
+[dependencyci-url]: https://dependencyci.com/github/ahmadnassri/metalsmith-paths
+[dependencyci-image]: https://dependencyci.com/github/ahmadnassri/metalsmith-paths/badge?style=flat-square

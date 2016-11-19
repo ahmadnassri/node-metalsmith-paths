@@ -1,117 +1,106 @@
-/* global describe, it */
+import plugin from '../src'
+import { test } from 'tap'
 
-'use strict'
+test('should be a plugin', (assert) => {
+  assert.plan(8)
 
-var plugin = require('..')
+  assert.type(plugin, 'function')
 
-require('should')
+  let files = {
+    'path/to/file.ext': {}
+  }
 
-describe('Metalsmith Paths', function () {
-  it('should be a plugin', function (done) {
-    plugin.should.be.a.Function
+  plugin()(files, null, () => {
+    assert.type(files['path/to/file.ext'].path, Object)
 
-    var files = {
-      'path/to/file.ext': {}
-    }
-
-    plugin()(files, null, function () {
-      files['path/to/file.ext'].should.have.property('path').and.be.an.Object
-
-      files['path/to/file.ext'].path.should.have.property('base').and.equal('file.ext')
-      files['path/to/file.ext'].path.should.have.property('dir').and.equal('path/to')
-      files['path/to/file.ext'].path.should.have.property('ext').and.equal('.ext')
-      files['path/to/file.ext'].path.should.have.property('name').and.equal('file')
-      files['path/to/file.ext'].path.should.have.property('href').and.equal('/path/to/file.ext')
-
-      done()
-    })
+    assert.equal(files['path/to/file.ext'].path.base, 'file.ext')
+    assert.equal(files['path/to/file.ext'].path.dir, 'path/to')
+    assert.equal(files['path/to/file.ext'].path.ext, '.ext')
+    assert.equal(files['path/to/file.ext'].path.name, 'file')
+    assert.equal(files['path/to/file.ext'].path.href, '/path/to/file.ext')
+    assert.equal(files['path/to/file.ext'].path.dhref, '/path/to/')
   })
+})
 
-  it('should use custom property', function (done) {
-    plugin.should.be.a.Function
+test('should use custom property', (assert) => {
+  assert.plan(7)
 
-    var files = {
-      'path/to/file.ext': {}
-    }
+  let files = {
+    'path/to/file.ext': {}
+  }
 
-    plugin({
-      property: 'foo'
-    })(files, null, function () {
-      files['path/to/file.ext'].should.have.property('foo').and.be.an.Object
+  plugin({ property: 'foo' })(files, null, () => {
+    assert.type(files['path/to/file.ext'].foo, Object)
 
-      files['path/to/file.ext'].foo.should.have.property('base').and.equal('file.ext')
-      files['path/to/file.ext'].foo.should.have.property('dir').and.equal('path/to')
-      files['path/to/file.ext'].foo.should.have.property('ext').and.equal('.ext')
-      files['path/to/file.ext'].foo.should.have.property('name').and.equal('file')
-      files['path/to/file.ext'].foo.should.have.property('href').and.equal('/path/to/file.ext')
-
-      done()
-    })
+    assert.equal(files['path/to/file.ext'].foo.base, 'file.ext')
+    assert.equal(files['path/to/file.ext'].foo.dir, 'path/to')
+    assert.equal(files['path/to/file.ext'].foo.ext, '.ext')
+    assert.equal(files['path/to/file.ext'].foo.name, 'file')
+    assert.equal(files['path/to/file.ext'].foo.href, '/path/to/file.ext')
+    assert.equal(files['path/to/file.ext'].foo.dhref, '/path/to/')
   })
+})
 
-  it('should respect directory indexes', function (done) {
-    plugin.should.be.a.Function
+test('should respect directory indexes', (assert) => {
+  assert.plan(13)
 
-    var files = {
-      'path/to/index.html': {},
-      'path/to/file.ext': {}
-    }
+  let files = {
+    'path/to/index.html': {},
+    'path/to/file.ext': {}
+  }
 
-    plugin({
-      directoryIndex: 'index.html'
-    })(files, null, function () {
-      files['path/to/index.html'].should.have.property('path').and.be.an.Object
-      files['path/to/index.html'].path.should.have.property('base').and.equal('index.html')
-      files['path/to/index.html'].path.should.have.property('dir').and.equal('path/to')
-      files['path/to/index.html'].path.should.have.property('ext').and.equal('.html')
-      files['path/to/index.html'].path.should.have.property('name').and.equal('index')
-      files['path/to/index.html'].path.should.have.property('href').and.equal('/path/to/')
+  plugin({ directoryIndex: 'index.html' })(files, null, () => {
+    assert.type(files['path/to/index.html'].path, Object)
 
-      files['path/to/file.ext'].should.have.property('path').and.be.an.Object
-      files['path/to/file.ext'].path.should.have.property('base').and.equal('file.ext')
-      files['path/to/file.ext'].path.should.have.property('dir').and.equal('path/to')
-      files['path/to/file.ext'].path.should.have.property('ext').and.equal('.ext')
-      files['path/to/file.ext'].path.should.have.property('name').and.equal('file')
-      files['path/to/file.ext'].path.should.have.property('href').and.equal('/path/to/file.ext')
+    assert.equal(files['path/to/index.html'].path.base, 'index.html')
+    assert.equal(files['path/to/index.html'].path.dir, 'path/to')
+    assert.equal(files['path/to/index.html'].path.ext, '.html')
+    assert.equal(files['path/to/index.html'].path.name, 'index')
+    assert.equal(files['path/to/index.html'].path.href, '/path/to/')
 
-      done()
-    })
+    assert.type(files['path/to/file.ext'].path, Object)
+
+    assert.equal(files['path/to/file.ext'].path.base, 'file.ext')
+    assert.equal(files['path/to/file.ext'].path.dir, 'path/to')
+    assert.equal(files['path/to/file.ext'].path.ext, '.ext')
+    assert.equal(files['path/to/file.ext'].path.name, 'file')
+    assert.equal(files['path/to/file.ext'].path.href, '/path/to/file.ext')
+    assert.equal(files['path/to/file.ext'].path.dhref, '/path/to/')
   })
+})
 
-  it('should return slash on directoryIndex root', function (done) {
-    plugin.should.be.a.Function
+test('should return slash on directoryIndex root', (assert) => {
+  assert.plan(21)
 
-    var files = {
-      'index.html': {},
-      'directory/index.html': {},
-      'directory/file.html': {}
-    }
+  let files = {
+    'index.html': {},
+    'directory/index.html': {},
+    'directory/file.html': {}
+  }
 
-    plugin({
-      directoryIndex: 'index.html'
-    })(files, null, function () {
-      files['index.html'].should.have.property('path').and.be.an.Object
-      files['index.html'].path.should.have.property('base').and.equal('index.html')
-      files['index.html'].path.should.have.property('dir').and.equal('')
-      files['index.html'].path.should.have.property('ext').and.equal('.html')
-      files['index.html'].path.should.have.property('name').and.equal('index')
-      files['index.html'].path.should.have.property('href').and.equal('/')
+  plugin({ directoryIndex: 'index.html' })(files, null, () => {
+    assert.type(files['index.html'].path, Object)
+    assert.equal(files['index.html'].path.base, 'index.html')
+    assert.equal(files['index.html'].path.dir, '')
+    assert.equal(files['index.html'].path.ext, '.html')
+    assert.equal(files['index.html'].path.name, 'index')
+    assert.equal(files['index.html'].path.href, '/')
+    assert.equal(files['index.html'].path.dhref, '/')
 
-      files['directory/index.html'].should.have.property('path').and.be.an.Object
-      files['directory/index.html'].path.should.have.property('base').and.equal('index.html')
-      files['directory/index.html'].path.should.have.property('dir').and.equal('directory')
-      files['directory/index.html'].path.should.have.property('ext').and.equal('.html')
-      files['directory/index.html'].path.should.have.property('name').and.equal('index')
-      files['directory/index.html'].path.should.have.property('href').and.equal('/directory/')
+    assert.type(files['directory/index.html'].path, Object)
+    assert.equal(files['directory/index.html'].path.base, 'index.html')
+    assert.equal(files['directory/index.html'].path.dir, 'directory')
+    assert.equal(files['directory/index.html'].path.ext, '.html')
+    assert.equal(files['directory/index.html'].path.name, 'index')
+    assert.equal(files['directory/index.html'].path.href, '/directory/')
+    assert.equal(files['directory/index.html'].path.dhref, '/directory/')
 
-      files['directory/file.html'].should.have.property('path').and.be.an.Object
-      files['directory/file.html'].path.should.have.property('base').and.equal('file.html')
-      files['directory/file.html'].path.should.have.property('dir').and.equal('directory')
-      files['directory/file.html'].path.should.have.property('ext').and.equal('.html')
-      files['directory/file.html'].path.should.have.property('name').and.equal('file')
-      files['directory/file.html'].path.should.have.property('href').and.equal('/directory/file.html')
-
-      done()
-    })
+    assert.type(files['directory/file.html'].path, Object)
+    assert.equal(files['directory/file.html'].path.base, 'file.html')
+    assert.equal(files['directory/file.html'].path.dir, 'directory')
+    assert.equal(files['directory/file.html'].path.ext, '.html')
+    assert.equal(files['directory/file.html'].path.name, 'file')
+    assert.equal(files['directory/file.html'].path.href, '/directory/file.html')
+    assert.equal(files['directory/file.html'].path.dhref, '/directory/')
   })
 })
