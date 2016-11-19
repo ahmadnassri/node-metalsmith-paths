@@ -2,18 +2,18 @@ import path from 'path'
 import { debuglog } from 'util'
 
 const debug = debuglog('metalsmith-paths')
+const defaults = {
+  property: 'path',
+  directoryIndex: false,
+  hrefIndex: false
+}
 
 /**
  * @param {Object} options
  * @return {Function}
  */
-
-module.exports = function plugin (options) {
-  options = Object.assign({}, {
-    property: 'path',
-    directoryIndex: false,
-    hrefIndex: false
-  }, options)
+export default function (options) {
+  options = Object.assign({}, defaults, options)
 
   return function (files, metalsmith, done) {
     setImmediate(done)
