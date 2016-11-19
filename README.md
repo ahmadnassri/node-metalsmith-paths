@@ -12,7 +12,7 @@ A Metalsmith plugin that adds file path values (`base`, `dir`, `ext`, `name`, `h
 ## Install
 
 ```bash
-npm install --production --save metalsmith-paths
+npm install --only=production --save metalsmith-paths
 ```
 
 ## Usage
@@ -88,7 +88,7 @@ You can also use the plugin with the Metalsmith CLI by adding a key to your `met
 
 ### directoryIndex
 
-Removes the filename from the `href` attribute if it matches the value of 
+Removes the filename from the `href` attribute if it matches the value of
 `directoryIndex`. Default: disabled. For example, the following configuration:
 
 ```json
