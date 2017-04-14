@@ -1,4 +1,4 @@
-# Metalsmith Paths [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
+# Metalsmith Paths [![version][npm-version]][npm-url] [![License][license-image]][license-url]
 
 A Metalsmith plugin that adds file path values (`base`, `dir`, `ext`, `name`, `href`) to metadata `path` property.
 
@@ -13,28 +13,6 @@ A Metalsmith plugin that adds file path values (`base`, `dir`, `ext`, `name`, `h
 
 ```bash
 npm install --only=production --save metalsmith-paths
-```
-
-## Usage
-
-I recommend using an optimized build matching your Node.js environment version, otherwise, the standard `require` would work just fine with any version of Node `>= v4.0` .
-
-```js
-/*
- * Node 7
- */
-const paths = require('metalsmith-paths/lib/node7')
-
-/*
- * Node 6
- */
-const paths = require('metalsmith-paths/lib/node6')
-
-/*
- * Node 4 (Default)
- * Note: additional ES2015 polyfills may be required
- */
-var paths = require('metalsmith-paths')
 ```
 
 ## API
@@ -111,20 +89,19 @@ Would produce the following filenames:
 | /portfolio/project1.html      | /portfolio/project1.html      |
 | /portfolio/project2.html      | /portfolio/project2.html      |
 
-
-----
+---
 > :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
 > License: [ISC][license-url] &nbsp;&middot;&nbsp;
 > Github: [@ahmadnassri](https://github.com/ahmadnassri) &nbsp;&middot;&nbsp;
 > Twitter: [@ahmadnassri](https://twitter.com/ahmadnassri)
 
 [license-url]: http://choosealicense.com/licenses/isc/
+[license-image]: https://img.shields.io/github/license/ahmadnassri/metalsmith-paths.svg?style=flat-square
 
 [travis-url]: https://travis-ci.org/ahmadnassri/metalsmith-paths
 [travis-image]: https://img.shields.io/travis/ahmadnassri/metalsmith-paths.svg?style=flat-square
 
 [npm-url]: https://www.npmjs.com/package/metalsmith-paths
-[npm-license]: https://img.shields.io/npm/l/metalsmith-paths.svg?style=flat-square
 [npm-version]: https://img.shields.io/npm/v/metalsmith-paths.svg?style=flat-square
 [npm-downloads]: https://img.shields.io/npm/dm/metalsmith-paths.svg?style=flat-square
 

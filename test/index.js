@@ -1,7 +1,9 @@
-import plugin from '../src'
-import { test } from 'tap'
+'use strict'
 
-test('should be a plugin', (assert) => {
+const plugin = require('..')
+const tap = require('tap')
+
+tap.test('should be a plugin', (assert) => {
   assert.plan(8)
 
   assert.type(plugin, 'function')
@@ -22,7 +24,7 @@ test('should be a plugin', (assert) => {
   })
 })
 
-test('should use custom property', (assert) => {
+tap.test('should use custom property', (assert) => {
   assert.plan(7)
 
   let files = {
@@ -41,7 +43,7 @@ test('should use custom property', (assert) => {
   })
 })
 
-test('should respect directory indexes', (assert) => {
+tap.test('should respect directory indexes', (assert) => {
   assert.plan(13)
 
   let files = {
@@ -69,7 +71,7 @@ test('should respect directory indexes', (assert) => {
   })
 })
 
-test('should return slash on directoryIndex root', (assert) => {
+tap.test('should return slash on directoryIndex root', (assert) => {
   assert.plan(21)
 
   let files = {
