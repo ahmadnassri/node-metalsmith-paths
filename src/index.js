@@ -29,7 +29,7 @@ module.exports = function (options) {
       // Assign to new file, to not alter the object key
       let toParse = file
 
-      if (options.parseWindows && os.platform() !== 'win32') {
+      if (options.parseWindows && os.platform() === 'win32') {
         const driveRegex = /^[a-z]:\\{0,2}/i
         toParse = file.replace(driveRegex, '/').replace(/\\{1,2}/g, '/')
         debug(toParse)
