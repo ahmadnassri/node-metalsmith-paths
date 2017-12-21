@@ -36,6 +36,6 @@
   "devDependencies": {
     "echint": "^4.0.1",
     "standard": "^10.0.2",
-    "tap": "^10.3.2"
+    "tap": "^11.0.1"
   }
 }
