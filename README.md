@@ -80,12 +80,12 @@ Removes the filename from the `href` attribute if it matches the value of
 
 Would produce the following filenames:
 
-| Filename                   | `path.href`                |
-|----------------------------|----------------------------|
-| `/index.html`              | `/`                        |
-| `/portfolio/index.html`    | `/portfolio/`              |
-| `/portfolio/project1.html` | `/portfolio/project1.html` |
-| `/portfolio/project2.html` | `/portfolio/project2.html` |
+| Filename                      | `path.href`                   |
+| ----------------------------- | ----------------------------- |
+| `/index.html`                 | `/`                           |
+| `/portfolio/index.html`       | `/portfolio/`                 |
+| `/portfolio/project1.html`    | `/portfolio/project1.html`    |
+| `/portfolio/project2.html`    | `/portfolio/project2.html`    |
 
 ----
 > Author: [Ahmad Nassri](https://www.ahmadnassri.com/) &bull;
