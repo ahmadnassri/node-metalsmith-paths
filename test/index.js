@@ -1,6 +1,6 @@
 const plugin = require('..')
-const tap = require('tap')
-const path = require('path')
+const { test } = require('tap')
+const { basename } = require('path')
 
 test('should be a plugin', (assert) => {
   assert.plan(8)
@@ -106,7 +106,7 @@ test('should return slash on directoryIndex root', (assert) => {
   })
 })
 
-tap.test('should respect Windows-style directory indexes', (assert) => {
+test('should respect Windows-style directory indexes', (assert) => {
   assert.plan(13)
 
   let files = {
@@ -115,21 +115,21 @@ tap.test('should respect Windows-style directory indexes', (assert) => {
   }
 
   plugin({ directoryIndex: 'index.html' })(files, null, () => {
-    assert.type(files[path.basename('C:\\path\\dir\\index.html')].path, Object)
+    assert.type(files[basename('C:\\path\\dir\\index.html')].path, Object)
 
-    assert.equal(files[path.basename('C:\\path\\dir\\index.html')].path.base, 'index.html')
-    assert.equal(files[path.basename('C:\\path\\dir\\index.html')].path.dir, '/path/dir')
-    assert.equal(files[path.basename('C:\\path\\dir\\index.html')].path.ext, '.html')
-    assert.equal(files[path.basename('C:\\path\\dir\\index.html')].path.name, 'index')
-    assert.equal(files[path.basename('C:\\path\\dir\\index.html')].path.href, '/path/dir/')
+    assert.equal(files[basename('C:\\path\\dir\\index.html')].path.base, 'index.html')
+    assert.equal(files[basename('C:\\path\\dir\\index.html')].path.dir, '/path/dir')
+    assert.equal(files[basename('C:\\path\\dir\\index.html')].path.ext, '.html')
+    assert.equal(files[basename('C:\\path\\dir\\index.html')].path.name, 'index')
+    assert.equal(files[basename('C:\\path\\dir\\index.html')].path.href, '/path/dir/')
 
-    assert.type(files[path.basename('C:\\path\\to\\file.txt')].path, Object)
+    assert.type(files[basename('C:\\path\\to\\file.txt')].path, Object)
 
-    assert.equal(files[path.basename('C:\\path\\to\\file.txt')].path.base, 'file.txt')
-    assert.equal(files[path.basename('C:\\path\\to\\file.txt')].path.dir, '/path/to')
-    assert.equal(files[path.basename('C:\\path\\to\\file.txt')].path.ext, '.txt')
-    assert.equal(files[path.basename('C:\\path\\to\\file.txt')].path.name, 'file')
-    assert.equal(files[path.basename('C:\\path\\to\\file.txt')].path.href, '/path/to/file.txt')
-    assert.equal(files[path.basename('C:\\path\\to\\file.txt')].path.dhref, '/path/to/')
+    assert.equal(files[basename('C:\\path\\to\\file.txt')].path.base, 'file.txt')
+    assert.equal(files[basename('C:\\path\\to\\file.txt')].path.dir, '/path/to')
+    assert.equal(files[basename('C:\\path\\to\\file.txt')].path.ext, '.txt')
+    assert.equal(files[basename('C:\\path\\to\\file.txt')].path.name, 'file')
+    assert.equal(files[basename('C:\\path\\to\\file.txt')].path.href, '/path/to/file.txt')
+    assert.equal(files[basename('C:\\path\\to\\file.txt')].path.dhref, '/path/to/')
   })
 })
