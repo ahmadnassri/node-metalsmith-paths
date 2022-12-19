@@ -1,0 +1,8 @@
+version: 2.0
+
+id: node-metalsmith-paths
+
+about:
+  title: Metalsmith Paths
+  description: A Metalsmith plugin that adds file path values (`base`, `dir`, `ext`, `name`, `href`) to metadata `path` property.
+  repository: ahmadnassri/node-metalsmith-paths
