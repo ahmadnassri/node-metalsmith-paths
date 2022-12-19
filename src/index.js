@@ -32,12 +32,6 @@ module.exports = function (options) {
 
       files[file][options.property] = parse(filename)
 
-      // In some versions of node/path, 'dir' at root may be either '.' or empty
-      // Normalize this property to be empty
-      if (files[file][options.property].dir === '.') {
-        files[file][options.property].dir = ''
-      }
-
       // generate href based on whether the file already has a leading slash or not
       let href = files[file][options.property].dir.startsWith('/') ? '' : '/'
 
