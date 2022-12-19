@@ -1,9 +1,7 @@
-'use strict'
+const { parse, basename } = require('path')
+const { debuglog } = require('util')
 
-const path = require('path')
-const util = require('util')
-
-const debug = util.debuglog('metalsmith-paths')
+const debug = debuglog('metalsmith-paths')
 const defaults = {
   property: 'path',
   directoryIndex: false,
@@ -23,21 +21,7 @@ module.exports = function (options) {
     Object.keys(files).forEach((file) => {
       debug('process file: %s', file)
 
-      if (path.parse) {
-        debug('[node >= 0.11.15] using path.parse')
-
-        files[file][options.property] = path.parse(file)
-      } else {
-        // add file path info
-        let extname = path.extname(file)
-
-        files[file][options.property] = {
-          base: path.basename(file),
-          dir: path.dirname(file).split(path.sep).join('/'),
-          ext: extname,
-          name: path.basename(file, extname)
-        }
-      }
+      files[file][options.property] = parse(file)
 
       // In some versions of node/path, 'dir' at root may be either '.' or empty
       // Normalize this property to be empty
@@ -54,8 +38,8 @@ module.exports = function (options) {
 
       const dhref = href
 
-      if (!options.directoryIndex || path.basename(file) !== options.directoryIndex) {
-        href += path.basename(file)
+      if (!options.directoryIndex || basename(file) !== options.directoryIndex) {
+        href += basename(file)
       }
 
       files[file][options.property].href = href

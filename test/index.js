@@ -1,14 +1,12 @@
-'use strict'
-
 const plugin = require('..')
-const tap = require('tap')
+const { test } = require('tap')
 
-tap.test('should be a plugin', (assert) => {
+test('should be a plugin', (assert) => {
   assert.plan(8)
 
   assert.type(plugin, 'function')
 
-  let files = {
+  const files = {
     'path/to/file.ext': {}
   }
 
@@ -24,10 +22,10 @@ tap.test('should be a plugin', (assert) => {
   })
 })
 
-tap.test('should use custom property', (assert) => {
+test('should use custom property', (assert) => {
   assert.plan(7)
 
-  let files = {
+  const files = {
     'path/to/file.ext': {}
   }
 
@@ -43,10 +41,10 @@ tap.test('should use custom property', (assert) => {
   })
 })
 
-tap.test('should respect directory indexes', (assert) => {
+test('should respect directory indexes', (assert) => {
   assert.plan(13)
 
-  let files = {
+  const files = {
     'path/to/index.html': {},
     'path/to/file.ext': {}
   }
@@ -71,10 +69,10 @@ tap.test('should respect directory indexes', (assert) => {
   })
 })
 
-tap.test('should return slash on directoryIndex root', (assert) => {
+test('should return slash on directoryIndex root', (assert) => {
   assert.plan(21)
 
-  let files = {
+  const files = {
     'index.html': {},
     'directory/index.html': {},
     'directory/file.html': {}
