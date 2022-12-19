@@ -56,11 +56,11 @@ You can also use the plugin with the Metalsmith CLI by adding a key to your `met
 
 ## Options
 
-| name             | description                        | default   |
-| ---------------- | ---------------------------------- | --------- |
-| `property`       | property to store the path data to | `path`    |
-| `directoryIndex` | remove the filename if it matches  | disabled  |
-| `parseWindows`   | exchange `\` for `/` on Windows systems  | true  |
+| name             | description                        | default  |
+|------------------|------------------------------------|----------|
+| `property`       | property to store the path data to | `path`   |
+| `directoryIndex` | remove the filename if it matches  | disabled |
+| `winToUnix`      | exchange `\` for `/` on Windows    | true     |
 
 ### directoryIndex
 

@@ -1,6 +1,8 @@
-const plugin = require('..')
 const { test } = require('tap')
-const { basename } = require('path')
+const { basename } = require('node:path')
+const sinon = require('sinon')
+
+const plugin = require('..')
 
 test('should be a plugin', (assert) => {
   assert.plan(8)
@@ -109,12 +111,15 @@ test('should return slash on directoryIndex root', (assert) => {
 test('should respect Windows-style directory indexes', (assert) => {
   assert.plan(13)
 
-  let files = {
+  // overwrite platform
+  sinon.stub(process, 'platform').value('win32')
+
+  const files = {
     'C:\\path\\dir\\index.html': {},
     'C:\\path\\to\\file.txt': {}
   }
 
-  plugin({ directoryIndex: 'index.html' })(files, null, () => {
+  plugin({ directoryIndex: 'index.html', parseWindows: true })(files, null, () => {
     assert.type(files[basename('C:\\path\\dir\\index.html')].path, Object)
 
     assert.equal(files[basename('C:\\path\\dir\\index.html')].path.base, 'index.html')
@@ -131,5 +136,7 @@ test('should respect Windows-style directory indexes', (assert) => {
     assert.equal(files[basename('C:\\path\\to\\file.txt')].path.name, 'file')
     assert.equal(files[basename('C:\\path\\to\\file.txt')].path.href, '/path/to/file.txt')
     assert.equal(files[basename('C:\\path\\to\\file.txt')].path.dhref, '/path/to/')
+
+    sinon.restore()
   })
 })

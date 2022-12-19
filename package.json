@@ -39,5 +39,8 @@
   },
   "devDependencies": {
     "tap": "^16.3.2"
+  },
+  "dependencies": {
+    "sinon": "^15.0.1"
   }
 }

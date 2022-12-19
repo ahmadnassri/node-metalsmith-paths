@@ -1,4 +1,3 @@
-const { platform } = require('os')
 const { parse, basename } = require('path')
 const { debuglog } = require('util')
 
@@ -7,7 +6,7 @@ const defaults = {
   property: 'path',
   directoryIndex: false,
   hrefIndex: false,
-  parseWindows: true
+  winToUnix: true
 }
 
 /**
@@ -24,10 +23,9 @@ module.exports = function (options) {
       let filename = file
 
       // manage windows paths
-      if (options.parseWindows && platform() === 'win32') {
+      if (options.winToUnix && process.platform === 'win32') {
         const driveRegex = /^[a-z]:\\{0,2}/i
         filename = file.replace(driveRegex, '/').replace(/\\{1,2}/g, '/')
-        debug(filename)
       }
 
       debug('process file: %s (%s)', file, filename)
